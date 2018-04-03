@@ -1,0 +1,18 @@
+{
+  "name": "client-demo-api",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Liechty",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "router": "^1.3.2"
+  }
+}
