@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@doubledutch/base-client@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@doubledutch/base-client/-/base-client-3.1.0.tgz#952d50d1833d3ee2eb7d708a59ee168ab7a39dc4"
+"@doubledutch/base-client@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@doubledutch/base-client/-/base-client-3.2.0.tgz#38fdff0d7f12fd1b91b2c479aeab2b79be6b9c69"
 
-"@doubledutch/rn-client@^3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-3.2.2.tgz#9fc05b880e68255c159858376aafbef1fccec1f0"
+"@doubledutch/rn-client@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-3.2.3.tgz#b80b9d990017484507aca6259bd25bc39167e9c6"
   dependencies:
-    "@doubledutch/base-client" "^3.1.0"
+    "@doubledutch/base-client" "^3.2.0"
     react "16.0.0-alpha.12"
     react-native "0.46.4"
 
