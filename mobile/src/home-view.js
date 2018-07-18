@@ -25,6 +25,7 @@ export default class HomeView extends Component {
 
           <Button title="getCurrentUser" onPress={() => client.getCurrentUser().then(result => Alert.alert("getCurrentUser", JSON.stringify(result, null, 2)))} />
           <Button title="getCurrentEvent" onPress={() => client.getCurrentEvent().then(result => Alert.alert("getCurrentEvent", JSON.stringify(result, null, 2)))} />
+          <Button title="refreshToken" onPress={() => client.refreshToken().then(result => Alert.alert("refreshToken", result))} />
           <Button title="logOut" onPress={() => client.logOut()} />
           <Button title="dismissLandingPage" onPress={() => client.dismissLandingPage(false)} />
           <Button title="dismissLandingPage(permanent)" onPress={() => client.dismissLandingPage(true)} />
