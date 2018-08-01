@@ -12,10 +12,11 @@ export default class HomeView extends Component {
   }
 
   render() {
+    const {backgroundColor} = this.props
     const currentUser = this.state.currentUser || client.currentUser
     const {currentEvent} = client
     return (
-      <View style={s.container}>
+      <View style={[s.container, backgroundColor ? {backgroundColor} : null]}>
         <TitleBar title="Info" client={client} />
         <ScrollView style={s.scroll}>
           <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
