@@ -8,7 +8,7 @@ import client, { Avatar, TitleBar } from '@doubledutch/rn-client'
 export default class HomeView extends Component {
   state = {}
   componentWillMount() {
-    client.getUser(client.currentUser.id).then(currentUser => this.setState({currentUser}))
+    client.getAttendee(client.currentUser.id).then(currentUser => this.setState({currentUser}))
   }
 
   render() {
@@ -27,7 +27,7 @@ export default class HomeView extends Component {
           <Button title="getCurrentUser" onPress={() => client.getCurrentUser().then(result => Alert.alert("getCurrentUser", JSON.stringify(result, null, 2)))} />
           <Button title="getCurrentEvent" onPress={() => client.getCurrentEvent().then(result => Alert.alert("getCurrentEvent", JSON.stringify(result, null, 2)))} />
           <Button title="refreshToken" onPress={() => client.refreshToken().then(result => Alert.alert("refreshToken", result))} />
-          <Button title="getPrimaryColor" onPress={() => client.getPrimaryColor()} />
+          <Button title="getPrimaryColor" onPress={() => client.getPrimaryColor().then(result => Alert.alert("getPrimaryColor", result))} />
           <Button title="dd://switchevents" onPress={() => client.openURL('dd://switchevents')} />
           <Button title="logOut" onPress={() => client.logOut()} />
           <Button title="dismissLandingPage" onPress={() => client.dismissLandingPage(false)} />
