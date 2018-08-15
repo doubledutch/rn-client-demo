@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactNative, {
   Alert, Button, Text, View, ScrollView
 } from 'react-native'
+import leftPad from 'left-pad'
 
 import client, { Avatar, TitleBar } from '@doubledutch/rn-client'
 
@@ -32,6 +33,7 @@ export default class HomeView extends Component {
           <Button title="logOut" onPress={() => client.logOut()} />
           <Button title="dismissLandingPage" onPress={() => client.dismissLandingPage(false)} />
           <Button title="dismissLandingPage(permanent)" onPress={() => client.dismissLandingPage(true)} />
+          <Button title={`random color. current: ${backgroundColor || 'default'}`} onPress={openWithRandomColor} />
 
           <Text>client.currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
 
@@ -41,6 +43,11 @@ export default class HomeView extends Component {
       </View>
     )
   }
+}
+
+function openWithRandomColor() {
+  const hex = leftPad(Math.floor((Math.random() * 255*255*255)).toString(16), 6, 0)
+  client.openURL(`dd://extensions/clientdemo?backgroundColor=%23${hex}`)
 }
 
 const s = ReactNative.StyleSheet.create({
