@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactNative, {
-  Alert, Button, Text, View, ScrollView
+  Alert, AsyncStorage, Button, Text, View, ScrollView
 } from 'react-native'
 import leftPad from 'left-pad'
 
@@ -8,14 +8,16 @@ import client, { Avatar, TitleBar } from '@doubledutch/rn-client'
 
 export default class HomeView extends Component {
   state = {}
-  componentWillMount() {
+  componentDidMount() {
     client.getAttendee(client.currentUser.id).then(currentUser => this.setState({currentUser}))
+    AsyncStorage.getItem('random').then(this.setState({random}))
   }
 
   render() {
     const {backgroundColor} = this.props
     const currentUser = this.state.currentUser || client.currentUser
     const {currentEvent} = client
+    const random = this.state.random || '(none)'
     return (
       <View style={[s.container, backgroundColor ? {backgroundColor} : null]}>
         <TitleBar title="Info" client={client} />
@@ -29,11 +31,12 @@ export default class HomeView extends Component {
           <Button title="getCurrentEvent" onPress={() => client.getCurrentEvent().then(result => Alert.alert("getCurrentEvent", JSON.stringify(result, null, 2)))} />
           <Button title="refreshToken" onPress={() => client.refreshToken().then(result => Alert.alert("refreshToken", result))} />
           <Button title="getPrimaryColor" onPress={() => client.getPrimaryColor().then(result => Alert.alert("getPrimaryColor", result))} />
-          <Button title="dd://switchevent" onPress={() => client.openURL('dd://switchevent')} />
+          <Button title="dd://leaveevent" onPress={() => client.openURL('dd://leaveevent')} />
           <Button title="logOut" onPress={() => client.logOut()} />
           <Button title="dismissLandingPage" onPress={() => client.dismissLandingPage(false)} />
           <Button title="dismissLandingPage(permanent)" onPress={() => client.dismissLandingPage(true)} />
           <Button title={`random color. current: ${backgroundColor || 'default'}`} onPress={openWithRandomColor} />
+          <Button title={`AsyncStorage random: ${random}`} onPress={() => AsyncStorage.setItem('random', Math.floor(Math.random() * 1000))} />
 
           <Text>client.currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
 
