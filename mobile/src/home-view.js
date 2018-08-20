@@ -29,7 +29,7 @@ export default class HomeView extends Component {
           <Button title="getCurrentEvent" onPress={() => client.getCurrentEvent().then(result => Alert.alert("getCurrentEvent", JSON.stringify(result, null, 2)))} />
           <Button title="refreshToken" onPress={() => client.refreshToken().then(result => Alert.alert("refreshToken", result))} />
           <Button title="getPrimaryColor" onPress={() => client.getPrimaryColor().then(result => Alert.alert("getPrimaryColor", result))} />
-          <Button title="dd://switchevents" onPress={() => client.openURL('dd://switchevents')} />
+          <Button title="dd://switchevent" onPress={() => client.openURL('dd://switchevent')} />
           <Button title="logOut" onPress={() => client.logOut()} />
           <Button title="dismissLandingPage" onPress={() => client.dismissLandingPage(false)} />
           <Button title="dismissLandingPage(permanent)" onPress={() => client.dismissLandingPage(true)} />
