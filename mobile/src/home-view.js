@@ -10,7 +10,7 @@ export default class HomeView extends Component {
   state = {}
   componentDidMount() {
     client.getAttendee(client.currentUser.id).then(currentUser => this.setState({currentUser}))
-    AsyncStorage.getItem('random').then(this.setState({random}))
+    AsyncStorage.getItem('random').then(random => this.setState({random}))
   }
 
   render() {
@@ -36,7 +36,7 @@ export default class HomeView extends Component {
           <Button title="dismissLandingPage" onPress={() => client.dismissLandingPage(false)} />
           <Button title="dismissLandingPage(permanent)" onPress={() => client.dismissLandingPage(true)} />
           <Button title={`random color. current: ${backgroundColor || 'default'}`} onPress={openWithRandomColor} />
-          <Button title={`AsyncStorage random: ${random}`} onPress={() => AsyncStorage.setItem('random', Math.floor(Math.random() * 1000))} />
+          <Button title={`AsyncStorage random: ${random}`} onPress={() => {const random = Math.floor(Math.random() * 1000).toString(); AsyncStorage.setItem('random', random); this.setState({random})}} />
 
           <Text>client.currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
 
