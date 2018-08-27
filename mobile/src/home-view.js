@@ -15,22 +15,25 @@ const locale = Platform.select({
 export default class HomeView extends Component {
   state = {}
   componentDidMount() {
-    client.getAttendee(client.currentUser.id).then(currentUser => this.setState({currentUser}))
+    client.getCurrentEvent().then(currentEvent => this.setState({currentEvent}))
+    client.getCurrentUser().then(currentUser => {
+      this.setState({currentUser})
+      client.getAttendee(currentUser.id).then(currentUser => this.setState({currentUser}))
+    })
     AsyncStorage.getItem('random').then(random => this.setState({random}))
   }
 
   render() {
     const {backgroundColor} = this.props
-    const currentUser = this.state.currentUser || client.currentUser
-    const {currentEvent} = client
+    const {currentEvent, currentUser} = this.state
     const random = this.state.random || '(none)'
     return (
       <View style={[s.container, backgroundColor ? {backgroundColor} : null]}>
         <TitleBar title="Info" client={client} />
         <ScrollView style={s.scroll}>
           <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
-            <Avatar size={50} user={currentUser} />
-            <Text style={{paddingLeft: 10, fontSize: 18}}>{currentUser.firstName} {currentUser.lastName}</Text>
+            <Avatar size={50} user={currentUser} client={client} />
+            {currentUser && <Text style={{paddingLeft: 10, fontSize: 18}}>{currentUser.firstName} {currentUser.lastName}</Text>}
           </View>
 
           <Button title="getCurrentUser" onPress={() => client.getCurrentUser().then(result => Alert.alert("getCurrentUser", JSON.stringify(result, null, 2)))} />
@@ -45,10 +48,10 @@ export default class HomeView extends Component {
           <Button title={`AsyncStorage random: ${random}`} onPress={() => {const random = Math.floor(Math.random() * 1000).toString(); AsyncStorage.setItem('random', random); this.setState({random})}} />
 
           <Text>locale: {JSON.stringify(locale)}</Text>
-          <Text>client.currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
+          <Text>currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
 
-          <Text style={{paddingTop: 15, fontSize: 18, textAlign: 'center'}}>{currentEvent.name}</Text>
-          <Text>client.currentEvent: {JSON.stringify(currentEvent, null, 2)}</Text>
+          {currentEvent && <Text style={{paddingTop: 15, fontSize: 18, textAlign: 'center'}}>{currentEvent.name}</Text>}
+          <Text>currentEvent: {JSON.stringify(currentEvent, null, 2)}</Text>
         </ScrollView>
       </View>
     )
