@@ -6,6 +6,12 @@ import leftPad from 'left-pad'
 
 import client, { Avatar, TitleBar } from '@doubledutch/rn-client'
 
+import {NativeModules} from 'react-native'
+const locale = Platform.select({
+  ios: NativeModules.SettingsManager.settings.AppleLocale,
+  android: NativeModules.I18nManager.localeIdentifier
+})
+
 export default class HomeView extends Component {
   state = {}
   componentDidMount() {
@@ -33,11 +39,12 @@ export default class HomeView extends Component {
           <Button title="getPrimaryColor" onPress={() => client.getPrimaryColor().then(result => Alert.alert("getPrimaryColor", result))} />
           <Button title="dd://leaveevent" onPress={() => client.openURL('dd://leaveevent')} />
           <Button title="logOut" onPress={() => client.logOut()} />
-          <Button title="dismissLandingPage" onPress={() => client.dismissLandingPage(false)} />
-          <Button title="dismissLandingPage(permanent)" onPress={() => client.dismissLandingPage(true)} />
+          <Button title="dismissLandingPage(showAgain)" onPress={() => client.dismissLandingPage(false)} />
+          <Button title="dismissLandingPage(dontShowAgain)" onPress={() => client.dismissLandingPage(true)} />
           <Button title={`random color. current: ${backgroundColor || 'default'}`} onPress={openWithRandomColor} />
           <Button title={`AsyncStorage random: ${random}`} onPress={() => {const random = Math.floor(Math.random() * 1000).toString(); AsyncStorage.setItem('random', random); this.setState({random})}} />
 
+          <Text>locale: {JSON.stringify(locale)}</Text>
           <Text>client.currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
 
           <Text style={{paddingTop: 15, fontSize: 18, textAlign: 'center'}}>{currentEvent.name}</Text>
