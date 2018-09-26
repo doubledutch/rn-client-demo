@@ -13,7 +13,7 @@ const locale = Platform.select({
 })
 
 export default class HomeView extends Component {
-  state = {}
+  state = {titleBarVisible: true}
   componentDidMount() {
     client.getCurrentEvent().then(currentEvent => this.setState({currentEvent}))
     client.getCurrentUser().then(currentUser => {
@@ -25,11 +25,11 @@ export default class HomeView extends Component {
 
   render() {
     const {backgroundColor} = this.props
-    const {currentEvent, currentUser} = this.state
+    const {currentEvent, currentUser, titleBarVisible} = this.state
     const random = this.state.random || '(none)'
     return (
       <View style={[s.container, backgroundColor ? {backgroundColor} : null]}>
-        <TitleBar title="Info" client={client} />
+        {titleBarVisible && <TitleBar title="Info" client={client} />}
         <ScrollView style={s.scroll}>
           <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
             <Avatar size={50} user={currentUser} client={client} />
@@ -46,6 +46,11 @@ export default class HomeView extends Component {
           <Button title="dismissLandingPage(dontShowAgain)" onPress={() => client.dismissLandingPage(true)} />
           <Button title={`random color. current: ${backgroundColor || 'default'}`} onPress={openWithRandomColor} />
           <Button title={`AsyncStorage random: ${random}`} onPress={() => {const random = Math.floor(Math.random() * 1000).toString(); AsyncStorage.setItem('random', random); this.setState({random})}} />
+          <Button title={`${titleBarVisible ? 'Hide' : 'Show'} title bar`} onPress={() => {
+              client._b.setNavigationBarHidden(titleBarVisible, false)
+              this.setState({titleBarVisible: !titleBarVisible})
+            }}
+          />
 
           <Text>locale: {JSON.stringify(locale)}</Text>
           <Text>currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
