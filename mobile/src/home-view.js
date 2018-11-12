@@ -26,6 +26,7 @@ export default class HomeView extends Component {
   render() {
     const {backgroundColor} = this.props
     const {currentEvent, currentUser, titleBarVisible} = this.state
+    if (!currentEvent || !currentUser) return null
     const random = this.state.random || '(none)'
     return (
       <View style={[s.container, backgroundColor ? {backgroundColor} : null]}>
@@ -53,6 +54,8 @@ export default class HomeView extends Component {
           />
 
           <Text>locale: {JSON.stringify(locale)}</Text>
+          <Text>clientVersion: {`${client.clientVersion.major}.${client.clientVersion.minor}.${client.clientVersion.revision}`}</Text>
+          <Text>props: {JSON.stringify(this.props)}</Text>
           <Text>currentUser: {JSON.stringify(currentUser, null, 2)}</Text>
 
           {currentEvent && <Text style={{paddingTop: 15, fontSize: 18, textAlign: 'center'}}>{currentEvent.name}</Text>}
