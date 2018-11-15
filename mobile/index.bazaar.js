@@ -1,2 +1,3 @@
-var Bazaar = require('bazaar-client');
+const Bazaar = require('bazaar-client')
+
 module.exports = Bazaar
