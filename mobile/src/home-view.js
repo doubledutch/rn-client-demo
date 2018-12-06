@@ -24,13 +24,13 @@ export default class HomeView extends Component {
   }
 
   render() {
-    const { backgroundColor } = this.props
+    const { backgroundColor, suggestedTitle } = this.props
     const { currentEvent, currentUser, titleBarVisible } = this.state
     if (!currentEvent || !currentUser) return null
     const random = this.state.random || '(none)'
     return (
       <View style={[s.container, backgroundColor ? { backgroundColor } : null]}>
-        {titleBarVisible && <TitleBar title="Info" client={client} />}
+        {titleBarVisible && <TitleBar title={suggestedTitle || 'Info'} client={client} />}
         <ScrollView style={s.scroll}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
             <Avatar size={50} user={currentUser} client={client} />
