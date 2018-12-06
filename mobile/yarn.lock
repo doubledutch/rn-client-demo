@@ -102,10 +102,10 @@
   resolved "https://registry.yarnpkg.com/@doubledutch/base-client/-/base-client-4.2.0.tgz#3a9c96cd7f3d006692c78c39f2e9da21bf3cffd0"
   integrity sha512-KU49gdwkA97axemiNojJFiGm8zxRVk0wHuimn8zx0xfGKH0wUIpoGEJhdcBCeflc21wAtPPheVZrbjtBLuHWiQ==
 
-"@doubledutch/rn-client@^4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-4.2.2.tgz#68c81f90ca30b37ead4665094e4dc1e2c51f133a"
-  integrity sha512-somENsjURhYrqYZ5Er3agAy9DoCytoH7v83ky3Kz/iTPiNdhqUJeUjMettCyg7wBiZzvlrO+8V9wBD9diSxrPA==
+"@doubledutch/rn-client@^4.2.4":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-4.2.4.tgz#da14e1cb5ece1342f780c3bfe0420a925df401ca"
+  integrity sha512-ce3PcDIXKY+brQ5Sg4hrGvmMJkG20iGRhGv5EpURB3S0o89ovupM0OH5RtuFKc9GPBd67EG1a43UuwdH5DJhww==
   dependencies:
     "@doubledutch/base-client" "^4.2.0"
     react "16.0.0-alpha.12"
