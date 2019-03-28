@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-import ReactNative, { Alert, AsyncStorage, Button, Text, View, ScrollView } from 'react-native'
+import ReactNative, {
+  Alert,
+  AsyncStorage,
+  Button,
+  NativeModules,
+  Platform,
+  Text,
+  View,
+  ScrollView,
+} from 'react-native'
 import leftPad from 'left-pad'
 
 import client, { Avatar, TitleBar } from '@doubledutch/rn-client'
-
-import { NativeModules } from 'react-native'
 
 const locale = Platform.select({
   ios: NativeModules.SettingsManager.settings.AppleLocale,
@@ -86,9 +93,9 @@ export default class HomeView extends Component {
           <Button
             title={`AsyncStorage random: ${random}`}
             onPress={() => {
-              const random = Math.floor(Math.random() * 1000).toString()
-              AsyncStorage.setItem('random', random)
-              this.setState({ random })
+              const rand = Math.floor(Math.random() * 1000).toString()
+              AsyncStorage.setItem('random', rand)
+              this.setState({ random: rand })
             }}
           />
           <Button
