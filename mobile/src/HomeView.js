@@ -28,6 +28,7 @@ import ReactNative, {
 import leftPad from 'left-pad'
 
 import client, { Avatar, TitleBar } from '@doubledutch/rn-client'
+import WebSocketTest from './WebSocketTest'
 
 const locale = Platform.select({
   ios: NativeModules.SettingsManager.settings.AppleLocale,
@@ -121,6 +122,7 @@ export default class HomeView extends Component {
               this.setState({ titleBarVisible: !titleBarVisible })
             }}
           />
+          <WebSocketTest />
 
           <Text>locale: {JSON.stringify(locale)}</Text>
           <Text>
