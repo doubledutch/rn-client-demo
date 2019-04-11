@@ -31,9 +31,9 @@ import client, { Avatar, TitleBar } from '@doubledutch/rn-client'
 import WebSocketTest from './WebSocketTest'
 
 const locale = Platform.select({
-  ios: NativeModules.SettingsManager.settings.AppleLocale,
-  android: NativeModules.I18nManager.localeIdentifier,
-})
+  ios: () => NativeModules.SettingsManager.settings.AppleLocale,
+  android: () => NativeModules.I18nManager.localeIdentifier,
+})()
 
 export default class HomeView extends Component {
   state = { titleBarVisible: true }
